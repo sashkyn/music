@@ -8,17 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257792A487FDD006BF035 /* MusicApp.swift */; };
-		E6B2577C2A487FDD006BF035 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2577B2A487FDD006BF035 /* ContentView.swift */; };
 		E6B2577E2A487FDE006BF035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B2577D2A487FDE006BF035 /* Assets.xcassets */; };
 		E6B257812A487FDE006BF035 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B257802A487FDE006BF035 /* Preview Assets.xcassets */; };
+		E6B2578C2A498A6B006BF035 /* TrackListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2578B2A498A6B006BF035 /* TrackListScreen.swift */; };
+		E6B2578E2A498A91006BF035 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2578D2A498A91006BF035 /* Track.swift */; };
+		E6B257902A498E7C006BF035 /* TrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2578F2A498E7C006BF035 /* TrackService.swift */; };
+		E6B257942A498ECA006BF035 /* TrackGoogleDiskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257932A498ECA006BF035 /* TrackGoogleDiskService.swift */; };
+		E6B257972A498F7C006BF035 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257962A498F7C006BF035 /* TrackView.swift */; };
+		E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257982A499327006BF035 /* TrackActionButton.swift */; };
+		E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */; };
+		E6B257A12A49E448006BF035 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A02A49E448006BF035 /* TrackList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E6B257762A487FDD006BF035 /* music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = music.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B257792A487FDD006BF035 /* MusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicApp.swift; sourceTree = "<group>"; };
-		E6B2577B2A487FDD006BF035 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E6B2577D2A487FDE006BF035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6B257802A487FDE006BF035 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E6B2578B2A498A6B006BF035 /* TrackListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListScreen.swift; sourceTree = "<group>"; };
+		E6B2578D2A498A91006BF035 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		E6B2578F2A498E7C006BF035 /* TrackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackService.swift; sourceTree = "<group>"; };
+		E6B257932A498ECA006BF035 /* TrackGoogleDiskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackGoogleDiskService.swift; sourceTree = "<group>"; };
+		E6B257962A498F7C006BF035 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
+		E6B257982A499327006BF035 /* TrackActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackActionButton.swift; sourceTree = "<group>"; };
+		E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMockService.swift; sourceTree = "<group>"; };
+		E6B257A02A49E448006BF035 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +65,10 @@
 		E6B257782A487FDD006BF035 /* music */ = {
 			isa = PBXGroup;
 			children = (
+				E6B257882A498A48006BF035 /* Data */,
+				E6B2579F2A49E290006BF035 /* Platform */,
+				E6B257872A498A3C006BF035 /* Presentation */,
 				E6B257792A487FDD006BF035 /* MusicApp.swift */,
-				E6B2577B2A487FDD006BF035 /* ContentView.swift */,
 				E6B2577D2A487FDE006BF035 /* Assets.xcassets */,
 				E6B2577F2A487FDE006BF035 /* Preview Content */,
 			);
@@ -65,6 +81,107 @@
 				E6B257802A487FDE006BF035 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E6B257872A498A3C006BF035 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E6B2578A2A498A5C006BF035 /* Screens */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E6B257882A498A48006BF035 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E6B257912A498EB0006BF035 /* TrackService */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E6B257892A498A51006BF035 /* TrackList */ = {
+			isa = PBXGroup;
+			children = (
+				E6B257952A498F70006BF035 /* View */,
+				E6B2578B2A498A6B006BF035 /* TrackListScreen.swift */,
+			);
+			path = TrackList;
+			sourceTree = "<group>";
+		};
+		E6B2578A2A498A5C006BF035 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E6B257892A498A51006BF035 /* TrackList */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		E6B257912A498EB0006BF035 /* TrackService */ = {
+			isa = PBXGroup;
+			children = (
+				E6B257A22A49E453006BF035 /* Entity */,
+				E6B2579A2A49D4EB006BF035 /* Mock */,
+				E6B257922A498EBB006BF035 /* GoogleDisk */,
+				E6B2578F2A498E7C006BF035 /* TrackService.swift */,
+			);
+			path = TrackService;
+			sourceTree = "<group>";
+		};
+		E6B257922A498EBB006BF035 /* GoogleDisk */ = {
+			isa = PBXGroup;
+			children = (
+				E6B257932A498ECA006BF035 /* TrackGoogleDiskService.swift */,
+			);
+			path = GoogleDisk;
+			sourceTree = "<group>";
+		};
+		E6B257952A498F70006BF035 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E6B257962A498F7C006BF035 /* TrackView.swift */,
+				E6B257982A499327006BF035 /* TrackActionButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E6B2579A2A49D4EB006BF035 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		E6B2579D2A49E25D006BF035 /* Downloader */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Downloader;
+			sourceTree = "<group>";
+		};
+		E6B2579E2A49E274006BF035 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		E6B2579F2A49E290006BF035 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				E6B2579E2A49E274006BF035 /* Player */,
+				E6B2579D2A49E25D006BF035 /* Downloader */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		E6B257A22A49E453006BF035 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				E6B2578D2A498A91006BF035 /* Track.swift */,
+				E6B257A02A49E448006BF035 /* TrackList.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +254,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6B2577C2A487FDD006BF035 /* ContentView.swift in Sources */,
+				E6B257A12A49E448006BF035 /* TrackList.swift in Sources */,
+				E6B2578E2A498A91006BF035 /* Track.swift in Sources */,
+				E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */,
+				E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */,
+				E6B257972A498F7C006BF035 /* TrackView.swift in Sources */,
 				E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */,
+				E6B257942A498ECA006BF035 /* TrackGoogleDiskService.swift in Sources */,
+				E6B2578C2A498A6B006BF035 /* TrackListScreen.swift in Sources */,
+				E6B257902A498E7C006BF035 /* TrackService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
