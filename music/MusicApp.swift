@@ -6,7 +6,11 @@ struct MusicApp: App {
     var body: some Scene {
         WindowGroup {
             TrackListScreen(
-                viewModel: .init(service: TrackGoogleDiskService())
+                viewModel: .init(
+                    service: TrackGoogleDiskService(),
+                    fileDownloader: SimpleFileDownloader(),
+                    player: DevicePlayer()
+                )
             )
         }
     }

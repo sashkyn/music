@@ -18,6 +18,10 @@
 		E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257982A499327006BF035 /* TrackActionButton.swift */; };
 		E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */; };
 		E6B257A12A49E448006BF035 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A02A49E448006BF035 /* TrackList.swift */; };
+		E6B257A42A4AE927006BF035 /* FileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A32A4AE927006BF035 /* FileDownloader.swift */; };
+		E6B257A62A4AEC1B006BF035 /* SimpleFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A52A4AEC1B006BF035 /* SimpleFileDownloader.swift */; };
+		E6B257A82A4B38B5006BF035 /* TrackListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A72A4B38B5006BF035 /* TrackListScreenViewModel.swift */; };
+		E6D508302A4B496000AFA9B5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D5082F2A4B496000AFA9B5 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		E6B257982A499327006BF035 /* TrackActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackActionButton.swift; sourceTree = "<group>"; };
 		E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMockService.swift; sourceTree = "<group>"; };
 		E6B257A02A49E448006BF035 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
+		E6B257A32A4AE927006BF035 /* FileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloader.swift; sourceTree = "<group>"; };
+		E6B257A52A4AEC1B006BF035 /* SimpleFileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFileDownloader.swift; sourceTree = "<group>"; };
+		E6B257A72A4B38B5006BF035 /* TrackListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListScreenViewModel.swift; sourceTree = "<group>"; };
+		E6D5082F2A4B496000AFA9B5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +112,7 @@
 			children = (
 				E6B257952A498F70006BF035 /* View */,
 				E6B2578B2A498A6B006BF035 /* TrackListScreen.swift */,
+				E6B257A72A4B38B5006BF035 /* TrackListScreenViewModel.swift */,
 			);
 			path = TrackList;
 			sourceTree = "<group>";
@@ -155,21 +164,16 @@
 		E6B2579D2A49E25D006BF035 /* Downloader */ = {
 			isa = PBXGroup;
 			children = (
+				E6B257A32A4AE927006BF035 /* FileDownloader.swift */,
+				E6B257A52A4AEC1B006BF035 /* SimpleFileDownloader.swift */,
 			);
 			path = Downloader;
-			sourceTree = "<group>";
-		};
-		E6B2579E2A49E274006BF035 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Player;
 			sourceTree = "<group>";
 		};
 		E6B2579F2A49E290006BF035 /* Platform */ = {
 			isa = PBXGroup;
 			children = (
-				E6B2579E2A49E274006BF035 /* Player */,
+				E6D5082E2A4B495100AFA9B5 /* Player */,
 				E6B2579D2A49E25D006BF035 /* Downloader */,
 			);
 			path = Platform;
@@ -182,6 +186,14 @@
 				E6B257A02A49E448006BF035 /* TrackList.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		E6D5082E2A4B495100AFA9B5 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				E6D5082F2A4B496000AFA9B5 /* Player.swift */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,14 +266,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6B257A42A4AE927006BF035 /* FileDownloader.swift in Sources */,
 				E6B257A12A49E448006BF035 /* TrackList.swift in Sources */,
 				E6B2578E2A498A91006BF035 /* Track.swift in Sources */,
 				E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */,
 				E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */,
+				E6D508302A4B496000AFA9B5 /* Player.swift in Sources */,
 				E6B257972A498F7C006BF035 /* TrackView.swift in Sources */,
 				E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */,
+				E6B257A62A4AEC1B006BF035 /* SimpleFileDownloader.swift in Sources */,
 				E6B257942A498ECA006BF035 /* TrackGoogleDiskService.swift in Sources */,
 				E6B2578C2A498A6B006BF035 /* TrackListScreen.swift in Sources */,
+				E6B257A82A4B38B5006BF035 /* TrackListScreenViewModel.swift in Sources */,
 				E6B257902A498E7C006BF035 /* TrackService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

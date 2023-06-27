@@ -1,5 +1,7 @@
 import Foundation
 
+// TODO: make audioURL safety
+
 typealias RemoteId = String
 
 struct Track: Decodable {

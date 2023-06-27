@@ -2,63 +2,6 @@ import SwiftUI
 
 // TODO: show error in alert
 
-final class TrackListScreenViewModel: ObservableObject {
-    
-    @Published private var tracks: [Track] = []
-    
-    var trackViewDataList: [TrackView.ViewData] {
-        tracks.map {
-            .init(
-                trackId: $0.id,
-                title: $0.name,
-                buttonState: .download
-            )
-        }
-    }
-    
-    @Published var isLoading: Bool = true
-    @Published var error: TrackServiceError? = nil
-    
-    private let service: TrackService
-    
-    init(service: TrackService) {
-        self.service = service
-    }
-    
-    @MainActor
-    func getTracks() async {
-        defer { isLoading = false }
-        
-        let result = await service.getTracks()
-        switch result {
-        case .success(let tracks):
-            self.tracks = tracks
-        case .failure(let error):
-            self.error = error
-        }
-    }
-    
-    @MainActor
-    func downloadTrack(withId: RemoteId) {
-        // TODO: Implement
-    }
-    
-    @MainActor
-    func playTrack(withId: RemoteId) {
-        // TODO: Implement
-    }
-    
-    @MainActor
-    func pauseTrack(withId: RemoteId) {
-        // TODO: Implement
-    }
-    
-    @MainActor
-    func cancelDownloadTrack(withId: RemoteId) {
-        // TODO: Implement
-    }
-}
-
 struct TrackListScreen: View {
     
     @StateObject
@@ -83,7 +26,8 @@ struct TrackListScreen: View {
                                 case .play:
                                     viewModel.playTrack(withId: viewData.trackId)
                                 case .progress:
-                                    viewModel.cancelDownloadTrack(withId: viewData.trackId)
+                                    print("progress")
+                                    //viewModel.cancelDownloadTrack(withId: viewData.trackId)
                                 }
                             }
                         )
@@ -103,7 +47,11 @@ struct TrackListScreen_Previews: PreviewProvider {
     
     static var previews: some View {
         TrackListScreen(
-            viewModel: .init(service: TrackMockService())
+            viewModel: .init(
+                service: TrackMockService(),
+                fileDownloader: SimpleFileDownloader(),
+                player: DevicePlayer()
+            )
         )
     }
 }
