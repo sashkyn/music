@@ -9,6 +9,7 @@ struct MusicApp: App {
                 viewModel: .init(
                     service: TrackGoogleDiskService(),
                     fileDownloader: SimpleFileDownloader(),
+                    fileStorage: FileStorage(),
                     player: DevicePlayer()
                 )
             )

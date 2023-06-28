@@ -4,7 +4,6 @@ protocol FileDownloader {
 
     func downloadFile(
         fromURL url: URL,
-        savedName: String,
         progress: @escaping (DownloadResult) -> Void
     )
 }
@@ -17,7 +16,7 @@ enum FileDownloaderError: Error {
 }
 
 enum DownloadResult {
-    case fileURL(URL)
+    case tempFileURL(URL)
     case progress(Double)
     case error(FileDownloaderError)
 }

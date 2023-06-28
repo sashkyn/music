@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E64779382A4C926000A9DF1D /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64779372A4C926000A9DF1D /* FileStorage.swift */; };
 		E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257792A487FDD006BF035 /* MusicApp.swift */; };
 		E6B2577E2A487FDE006BF035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B2577D2A487FDE006BF035 /* Assets.xcassets */; };
 		E6B257812A487FDE006BF035 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B257802A487FDE006BF035 /* Preview Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E64779372A4C926000A9DF1D /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		E6B257762A487FDD006BF035 /* music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = music.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B257792A487FDD006BF035 /* MusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicApp.swift; sourceTree = "<group>"; };
 		E6B2577D2A487FDE006BF035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E64779362A4C922600A9DF1D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				E64779372A4C926000A9DF1D /* FileStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		E6B2576D2A487FDD006BF035 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +183,7 @@
 		E6B2579F2A49E290006BF035 /* Platform */ = {
 			isa = PBXGroup;
 			children = (
+				E64779362A4C922600A9DF1D /* Storage */,
 				E6D5082E2A4B495100AFA9B5 /* Player */,
 				E6B2579D2A49E25D006BF035 /* Downloader */,
 			);
@@ -271,6 +282,7 @@
 				E6B2578E2A498A91006BF035 /* Track.swift in Sources */,
 				E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */,
 				E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */,
+				E64779382A4C926000A9DF1D /* FileStorage.swift in Sources */,
 				E6D508302A4B496000AFA9B5 /* Player.swift in Sources */,
 				E6B257972A498F7C006BF035 /* TrackView.swift in Sources */,
 				E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */,
