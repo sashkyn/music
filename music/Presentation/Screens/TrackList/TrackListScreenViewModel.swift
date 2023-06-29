@@ -86,7 +86,7 @@ final class TrackListScreenViewModel: ObservableObject {
 
     @MainActor
     func downloadTrack(withId trackId: RemoteId) {
-        guard let url = tracks.first(where: { $0.id == trackId })?.audioURL else {
+        guard let url = tracks.first(where: { $0.id == trackId })?.audioDownloadURL else {
             return
         }
         

@@ -6,5 +6,5 @@ import Foundation
 struct Track: Decodable {
     let id: RemoteId
     let name: String
-    let audioURL: URL
+    let audioURL: String
 }
