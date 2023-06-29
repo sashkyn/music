@@ -2,18 +2,21 @@ import Foundation
 
 final class FileStorage {
     
-    func getSavedFileURLs() -> [URL] {
+    private lazy var mainDirectoryURL: URL? = {
         let domainURLs = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
         )
-        
-        guard let url = domainURLs.first else {
+        return domainURLs.first
+    }()
+    
+    func getSavedFileURLs() -> [URL] {
+        guard let mainDirectoryURL else {
             return []
         }
         
         guard let fileURLs = try? FileManager.default.contentsOfDirectory(
-            at: url,
+            at: mainDirectoryURL,
             includingPropertiesForKeys: []
         ) else {
             return []
@@ -22,19 +25,14 @@ final class FileStorage {
     }
     
     func saveDownloadedFile(tempFileURL: URL, name: String) -> URL? {
-        let domainURLs = FileManager.default.urls(
-            for: .documentDirectory,
-            in: .userDomainMask
-        )
-
-        guard let destinationURL = domainURLs.first?.appendingPathComponent(name) else {
+        guard let fileDestinationURL = mainDirectoryURL?.appendingPathComponent(name) else {
             return nil
         }
         
         do {
-            try? FileManager.default.removeItem(at: destinationURL)
-            try FileManager.default.moveItem(at: tempFileURL, to: destinationURL)
-            return destinationURL
+            try? FileManager.default.removeItem(at: fileDestinationURL)
+            try FileManager.default.moveItem(at: tempFileURL, to: fileDestinationURL)
+            return fileDestinationURL
         } catch {
             return nil
         }
