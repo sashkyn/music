@@ -10,7 +10,7 @@ struct TrackListScreen: View {
     var body: some View {
         if viewModel.isLoading {
             ProgressView()
-                .onAppear { Task { await viewModel.getTracks() } }
+                .onAppear { viewModel.getTracks() }
         } else {
             NavigationView {
                 ScrollView {
@@ -69,7 +69,7 @@ struct TrackListScreen_Previews: PreviewProvider {
         TrackListScreen(
             viewModel: .init(
                 service: TrackMockService(),
-                fileDownloader: FileManagerDownloader(),
+                fileDownloader: URLSessionFileDownloader(),
                 fileStorage: DocumentsFileStorage(),
                 player: DevicePlayer()
             )

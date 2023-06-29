@@ -60,23 +60,27 @@ final class TrackListScreenViewModel: ObservableObject {
     }
     
     @MainActor
-    func getTracks() async {
-        isLoading = true
-        
-        let result = await service.getTracks()
-        switch result {
-        case .success(let tracks):
-            self.tracks = tracks
-        case .failure(let error):
-            self.error = error
+    func getTracks() {
+        Task {
+            isLoading = true
+            
+            let result = await service.getTracks()
+            switch result {
+            case .success(let tracks):
+                self.tracks = tracks
+            case .failure(let error):
+                self.error = error
+            }
+            
+            isLoading = false
         }
         
-        isLoading = false
+        
     }
-    
+
     @MainActor
     func downloadTrack(withId trackId: RemoteId) {
-        guard let url = tracks.first(where: { $0.id == trackId })?.downloadURL else {
+        guard let url = tracks.first(where: { $0.id == trackId })?.audioURL else {
             return
         }
         
@@ -115,7 +119,7 @@ final class TrackListScreenViewModel: ObservableObject {
         guard case let .fileURL(url) = tracksStatuses[trackId] else {
             return
         }
-
+        
         player.play(fileURL: url)
         
         activeTrackId = trackId

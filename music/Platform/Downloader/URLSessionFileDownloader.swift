@@ -1,6 +1,6 @@
 import Foundation
 
-final class FileManagerDownloader: FileDownloader {
+final class URLSessionFileDownloader: FileDownloader {
     
     func downloadFile(
         fromURL url: URL,
@@ -10,7 +10,7 @@ final class FileManagerDownloader: FileDownloader {
         let request = URLRequest(url: url)
         
         var observation: NSKeyValueObservation?
-        
+
         let downloadTask = URLSession.shared.downloadTask(with: request) { tempFileURL, _, _ in
             defer {
                 observation?.invalidate()

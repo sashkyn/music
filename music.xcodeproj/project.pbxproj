@@ -24,7 +24,7 @@
 		E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */; };
 		E6B257A12A49E448006BF035 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A02A49E448006BF035 /* TrackList.swift */; };
 		E6B257A42A4AE927006BF035 /* FileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A32A4AE927006BF035 /* FileDownloader.swift */; };
-		E6B257A62A4AEC1B006BF035 /* FileManagerDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A52A4AEC1B006BF035 /* FileManagerDownloader.swift */; };
+		E6B257A62A4AEC1B006BF035 /* URLSessionFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A52A4AEC1B006BF035 /* URLSessionFileDownloader.swift */; };
 		E6B257A82A4B38B5006BF035 /* TrackListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A72A4B38B5006BF035 /* TrackListScreenViewModel.swift */; };
 		E6D508302A4B496000AFA9B5 /* DevicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D5082F2A4B496000AFA9B5 /* DevicePlayer.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +48,7 @@
 		E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMockService.swift; sourceTree = "<group>"; };
 		E6B257A02A49E448006BF035 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
 		E6B257A32A4AE927006BF035 /* FileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloader.swift; sourceTree = "<group>"; };
-		E6B257A52A4AEC1B006BF035 /* FileManagerDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDownloader.swift; sourceTree = "<group>"; };
+		E6B257A52A4AEC1B006BF035 /* URLSessionFileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFileDownloader.swift; sourceTree = "<group>"; };
 		E6B257A72A4B38B5006BF035 /* TrackListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListScreenViewModel.swift; sourceTree = "<group>"; };
 		E6D5082F2A4B496000AFA9B5 /* DevicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				E6B257A32A4AE927006BF035 /* FileDownloader.swift */,
-				E6B257A52A4AEC1B006BF035 /* FileManagerDownloader.swift */,
+				E6B257A52A4AEC1B006BF035 /* URLSessionFileDownloader.swift */,
 			);
 			path = Downloader;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 				E6D508302A4B496000AFA9B5 /* DevicePlayer.swift in Sources */,
 				E6B257972A498F7C006BF035 /* TrackView.swift in Sources */,
 				E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */,
-				E6B257A62A4AEC1B006BF035 /* FileManagerDownloader.swift in Sources */,
+				E6B257A62A4AEC1B006BF035 /* URLSessionFileDownloader.swift in Sources */,
 				E6B257942A498ECA006BF035 /* TrackGoogleDiskService.swift in Sources */,
 				E6B2578C2A498A6B006BF035 /* TrackListScreen.swift in Sources */,
 				E647793A2A4DBA5900A9DF1D /* RemoteId.swift in Sources */,

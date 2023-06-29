@@ -8,7 +8,7 @@ struct MusicApp: App {
             TrackListScreen(
                 viewModel: .init(
                     service: TrackGoogleDiskService(),
-                    fileDownloader: FileManagerDownloader(),
+                    fileDownloader: URLSessionFileDownloader(),
                     fileStorage: DocumentsFileStorage(),
                     player: DevicePlayer()
                 )
