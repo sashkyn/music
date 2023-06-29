@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E64779382A4C926000A9DF1D /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64779372A4C926000A9DF1D /* FileStorage.swift */; };
+		E647793A2A4DBA5900A9DF1D /* RemoteId.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64779392A4DBA5900A9DF1D /* RemoteId.swift */; };
+		E647793D2A4DBAF300A9DF1D /* Track+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E647793C2A4DBAF300A9DF1D /* Track+Extensions.swift */; };
 		E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257792A487FDD006BF035 /* MusicApp.swift */; };
 		E6B2577E2A487FDE006BF035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B2577D2A487FDE006BF035 /* Assets.xcassets */; };
 		E6B257812A487FDE006BF035 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B257802A487FDE006BF035 /* Preview Assets.xcassets */; };
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		E64779372A4C926000A9DF1D /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		E64779392A4DBA5900A9DF1D /* RemoteId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteId.swift; sourceTree = "<group>"; };
+		E647793C2A4DBAF300A9DF1D /* Track+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Track+Extensions.swift"; sourceTree = "<group>"; };
 		E6B257762A487FDD006BF035 /* music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = music.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B257792A487FDD006BF035 /* MusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicApp.swift; sourceTree = "<group>"; };
 		E6B2577D2A487FDE006BF035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,6 +66,14 @@
 				E64779372A4C926000A9DF1D /* FileStorage.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		E647793B2A4DBAE900A9DF1D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E647793C2A4DBAF300A9DF1D /* Track+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E6B2576D2A487FDD006BF035 = {
@@ -112,6 +124,7 @@
 		E6B257882A498A48006BF035 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E647793B2A4DBAE900A9DF1D /* Extensions */,
 				E6B257912A498EB0006BF035 /* TrackService */,
 			);
 			path = Data;
@@ -138,7 +151,7 @@
 		E6B257912A498EB0006BF035 /* TrackService */ = {
 			isa = PBXGroup;
 			children = (
-				E6B257A22A49E453006BF035 /* Entity */,
+				E6B257A22A49E453006BF035 /* Entities */,
 				E6B2579A2A49D4EB006BF035 /* Mock */,
 				E6B257922A498EBB006BF035 /* GoogleDisk */,
 				E6B2578F2A498E7C006BF035 /* TrackService.swift */,
@@ -190,13 +203,14 @@
 			path = Platform;
 			sourceTree = "<group>";
 		};
-		E6B257A22A49E453006BF035 /* Entity */ = {
+		E6B257A22A49E453006BF035 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				E64779392A4DBA5900A9DF1D /* RemoteId.swift */,
 				E6B2578D2A498A91006BF035 /* Track.swift */,
 				E6B257A02A49E448006BF035 /* TrackList.swift */,
 			);
-			path = Entity;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		E6D5082E2A4B495100AFA9B5 /* Player */ = {
@@ -278,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6B257A42A4AE927006BF035 /* FileDownloader.swift in Sources */,
+				E647793D2A4DBAF300A9DF1D /* Track+Extensions.swift in Sources */,
 				E6B257A12A49E448006BF035 /* TrackList.swift in Sources */,
 				E6B2578E2A498A91006BF035 /* Track.swift in Sources */,
 				E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */,
@@ -289,6 +304,7 @@
 				E6B257A62A4AEC1B006BF035 /* SimpleFileDownloader.swift in Sources */,
 				E6B257942A498ECA006BF035 /* TrackGoogleDiskService.swift in Sources */,
 				E6B2578C2A498A6B006BF035 /* TrackListScreen.swift in Sources */,
+				E647793A2A4DBA5900A9DF1D /* RemoteId.swift in Sources */,
 				E6B257A82A4B38B5006BF035 /* TrackListScreenViewModel.swift in Sources */,
 				E6B257902A498E7C006BF035 /* TrackService.swift in Sources */,
 			);

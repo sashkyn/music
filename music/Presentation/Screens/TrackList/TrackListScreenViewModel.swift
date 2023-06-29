@@ -1,8 +1,6 @@
 import Foundation
 import AVFoundation
 
-// TODO: переименовать withId
-
 final class TrackListScreenViewModel: ObservableObject {
 
     var trackViewDataList: [TrackView.ViewData] {
@@ -75,7 +73,7 @@ final class TrackListScreenViewModel: ObservableObject {
     
     @MainActor
     func downloadTrack(withId trackId: RemoteId) {
-        guard let url = tracks.first(where: { $0.id == trackId })?.audioURL else {
+        guard let url = tracks.first(where: { $0.id == trackId })?.downloadURL else {
             return
         }
         

@@ -11,7 +11,7 @@ final class SimpleFileDownloader: FileDownloader {
         
         var observation: NSKeyValueObservation?
         
-        let downloadTask = URLSession.shared.downloadTask(with: request) { tempFileURL, _, error in
+        let downloadTask = URLSession.shared.downloadTask(with: request) { tempFileURL, _, _ in
             defer {
                 observation?.invalidate()
             }
