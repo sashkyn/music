@@ -1,12 +1,30 @@
 import AVFoundation
 
 /// TODO:
-/// коллбек на конец трека
 /// состояние воспроизведения
 /// исправить баг с мейн очередью
 
 final class DevicePlayer: Player {
+    
+    var onStartPlaying: (() -> Void)?
+    var onEndPlaying: (() -> Void)?
+    
     private let player = AVPlayer()
+    
+    private var playerStatusObservation: NSKeyValueObservation?
+    
+    init() {
+        self.playerStatusObservation = player.observe(\.rate) { [weak self] (player, _) in
+            guard let self else {
+                return
+            }
+            if self.player.rate == 0.0 {
+                self.onEndPlaying?()
+            } else if self.player.rate == 1.0 {
+                self.onStartPlaying?()
+            }
+        }
+    }
     
     func play(fileURL: URL) {
         player.replaceCurrentItem(with: AVPlayerItem(url: fileURL))

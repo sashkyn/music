@@ -57,6 +57,14 @@ final class TrackListScreenViewModel: ObservableObject {
         self.fileDownloader = fileDownloader
         self.fileStorage = fileStorage
         self.player = player
+        
+        self.player.onStartPlaying = { [weak self] in
+            self?.isPlaying = true
+        }
+        
+        self.player.onEndPlaying = { [weak self] in
+            self?.isPlaying = false
+        }
     }
     
     @MainActor
@@ -74,8 +82,6 @@ final class TrackListScreenViewModel: ObservableObject {
             
             isLoading = false
         }
-        
-        
     }
 
     @MainActor
@@ -112,7 +118,6 @@ final class TrackListScreenViewModel: ObservableObject {
     func playTrack(withId trackId: RemoteId) {
         if activeTrackId == trackId {
             player.continuePlaying()
-            isPlaying = true
             return
         }
         
@@ -123,14 +128,11 @@ final class TrackListScreenViewModel: ObservableObject {
         player.play(fileURL: url)
         
         activeTrackId = trackId
-        isPlaying = true
     }
     
     @MainActor
     func pauseTrack() {
         player.pause()
-        
-        isPlaying = false
     }
     
     @MainActor
