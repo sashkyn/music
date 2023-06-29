@@ -2,7 +2,6 @@ import AVFoundation
 
 /// TODO:
 /// состояние воспроизведения
-/// исправить баг с мейн очередью
 
 final class DevicePlayer: Player {
     
@@ -24,6 +23,10 @@ final class DevicePlayer: Player {
                 self.onStartPlaying?()
             }
         }
+    }
+    
+    deinit {
+        playerStatusObservation?.invalidate()
     }
     
     func play(fileURL: URL) {

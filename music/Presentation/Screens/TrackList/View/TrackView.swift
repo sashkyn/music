@@ -28,6 +28,8 @@ struct TrackView: View {
     }
 }
 
+// MARK: ViewData
+
 extension TrackView {
     
     struct ViewData: Identifiable {
