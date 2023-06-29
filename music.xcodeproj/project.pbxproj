@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E64779382A4C926000A9DF1D /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64779372A4C926000A9DF1D /* FileStorage.swift */; };
+		E64779382A4C926000A9DF1D /* DocumentsFileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64779372A4C926000A9DF1D /* DocumentsFileStorage.swift */; };
 		E647793A2A4DBA5900A9DF1D /* RemoteId.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64779392A4DBA5900A9DF1D /* RemoteId.swift */; };
 		E647793D2A4DBAF300A9DF1D /* Track+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E647793C2A4DBAF300A9DF1D /* Track+Extensions.swift */; };
+		E647793F2A4DBCC200A9DF1D /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E647793E2A4DBCC200A9DF1D /* FileStorage.swift */; };
+		E64779412A4DBD3600A9DF1D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64779402A4DBD3600A9DF1D /* Player.swift */; };
 		E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257792A487FDD006BF035 /* MusicApp.swift */; };
 		E6B2577E2A487FDE006BF035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B2577D2A487FDE006BF035 /* Assets.xcassets */; };
 		E6B257812A487FDE006BF035 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B257802A487FDE006BF035 /* Preview Assets.xcassets */; };
@@ -22,15 +24,17 @@
 		E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */; };
 		E6B257A12A49E448006BF035 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A02A49E448006BF035 /* TrackList.swift */; };
 		E6B257A42A4AE927006BF035 /* FileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A32A4AE927006BF035 /* FileDownloader.swift */; };
-		E6B257A62A4AEC1B006BF035 /* SimpleFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A52A4AEC1B006BF035 /* SimpleFileDownloader.swift */; };
+		E6B257A62A4AEC1B006BF035 /* FileManagerDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A52A4AEC1B006BF035 /* FileManagerDownloader.swift */; };
 		E6B257A82A4B38B5006BF035 /* TrackListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A72A4B38B5006BF035 /* TrackListScreenViewModel.swift */; };
-		E6D508302A4B496000AFA9B5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D5082F2A4B496000AFA9B5 /* Player.swift */; };
+		E6D508302A4B496000AFA9B5 /* DevicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D5082F2A4B496000AFA9B5 /* DevicePlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E64779372A4C926000A9DF1D /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		E64779372A4C926000A9DF1D /* DocumentsFileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsFileStorage.swift; sourceTree = "<group>"; };
 		E64779392A4DBA5900A9DF1D /* RemoteId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteId.swift; sourceTree = "<group>"; };
 		E647793C2A4DBAF300A9DF1D /* Track+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Track+Extensions.swift"; sourceTree = "<group>"; };
+		E647793E2A4DBCC200A9DF1D /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		E64779402A4DBD3600A9DF1D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		E6B257762A487FDD006BF035 /* music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = music.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B257792A487FDD006BF035 /* MusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicApp.swift; sourceTree = "<group>"; };
 		E6B2577D2A487FDE006BF035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,9 +48,9 @@
 		E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMockService.swift; sourceTree = "<group>"; };
 		E6B257A02A49E448006BF035 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
 		E6B257A32A4AE927006BF035 /* FileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloader.swift; sourceTree = "<group>"; };
-		E6B257A52A4AEC1B006BF035 /* SimpleFileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFileDownloader.swift; sourceTree = "<group>"; };
+		E6B257A52A4AEC1B006BF035 /* FileManagerDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDownloader.swift; sourceTree = "<group>"; };
 		E6B257A72A4B38B5006BF035 /* TrackListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListScreenViewModel.swift; sourceTree = "<group>"; };
-		E6D5082F2A4B496000AFA9B5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		E6D5082F2A4B496000AFA9B5 /* DevicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,8 @@
 		E64779362A4C922600A9DF1D /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				E64779372A4C926000A9DF1D /* FileStorage.swift */,
+				E647793E2A4DBCC200A9DF1D /* FileStorage.swift */,
+				E64779372A4C926000A9DF1D /* DocumentsFileStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -188,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				E6B257A32A4AE927006BF035 /* FileDownloader.swift */,
-				E6B257A52A4AEC1B006BF035 /* SimpleFileDownloader.swift */,
+				E6B257A52A4AEC1B006BF035 /* FileManagerDownloader.swift */,
 			);
 			path = Downloader;
 			sourceTree = "<group>";
@@ -216,7 +221,8 @@
 		E6D5082E2A4B495100AFA9B5 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				E6D5082F2A4B496000AFA9B5 /* Player.swift */,
+				E64779402A4DBD3600A9DF1D /* Player.swift */,
+				E6D5082F2A4B496000AFA9B5 /* DevicePlayer.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -297,15 +303,17 @@
 				E6B2578E2A498A91006BF035 /* Track.swift in Sources */,
 				E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */,
 				E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */,
-				E64779382A4C926000A9DF1D /* FileStorage.swift in Sources */,
-				E6D508302A4B496000AFA9B5 /* Player.swift in Sources */,
+				E64779382A4C926000A9DF1D /* DocumentsFileStorage.swift in Sources */,
+				E647793F2A4DBCC200A9DF1D /* FileStorage.swift in Sources */,
+				E6D508302A4B496000AFA9B5 /* DevicePlayer.swift in Sources */,
 				E6B257972A498F7C006BF035 /* TrackView.swift in Sources */,
 				E6B2577A2A487FDD006BF035 /* MusicApp.swift in Sources */,
-				E6B257A62A4AEC1B006BF035 /* SimpleFileDownloader.swift in Sources */,
+				E6B257A62A4AEC1B006BF035 /* FileManagerDownloader.swift in Sources */,
 				E6B257942A498ECA006BF035 /* TrackGoogleDiskService.swift in Sources */,
 				E6B2578C2A498A6B006BF035 /* TrackListScreen.swift in Sources */,
 				E647793A2A4DBA5900A9DF1D /* RemoteId.swift in Sources */,
 				E6B257A82A4B38B5006BF035 /* TrackListScreenViewModel.swift in Sources */,
+				E64779412A4DBD3600A9DF1D /* Player.swift in Sources */,
 				E6B257902A498E7C006BF035 /* TrackService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

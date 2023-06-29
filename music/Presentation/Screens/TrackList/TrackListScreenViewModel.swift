@@ -61,6 +61,8 @@ final class TrackListScreenViewModel: ObservableObject {
     
     @MainActor
     func getTracks() async {
+        isLoading = true
+        
         let result = await service.getTracks()
         switch result {
         case .success(let tracks):
@@ -68,6 +70,7 @@ final class TrackListScreenViewModel: ObservableObject {
         case .failure(let error):
             self.error = error
         }
+        
         isLoading = false
     }
     
@@ -130,7 +133,7 @@ final class TrackListScreenViewModel: ObservableObject {
     func clearCache() {
         activeTrackId = nil
         player.stop()
-        fileStorage.clear()
+        fileStorage.removeAllFiles()
         tracksStatuses = [:]
     }
 }

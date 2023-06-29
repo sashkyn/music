@@ -69,8 +69,8 @@ struct TrackListScreen_Previews: PreviewProvider {
         TrackListScreen(
             viewModel: .init(
                 service: TrackMockService(),
-                fileDownloader: SimpleFileDownloader(),
-                fileStorage: FileStorage(),
+                fileDownloader: FileManagerDownloader(),
+                fileStorage: DocumentsFileStorage(),
                 player: DevicePlayer()
             )
         )

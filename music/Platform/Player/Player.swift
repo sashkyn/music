@@ -1,32 +1,8 @@
-import AVFoundation
+import Foundation
 
-/// TODO:
-/// protocol
-/// коллбек на конец трека
-/// состояние воспроизведения
-/// исправить баг с мейн очередью
-
-final class DevicePlayer {
-    private let player = AVPlayer()
-    
-    func play(fileURL: URL) {
-        player.replaceCurrentItem(with: AVPlayerItem(url: fileURL))
-        player.play()
-    }
-    
-    func pause() {
-        player.pause()
-    }
-    
-    func stop() {
-        player.replaceCurrentItem(with: nil)
-    }
-    
-    func continuePlaying() {
-        guard player.currentItem != nil else {
-            return
-        }
-        
-        player.play()
-    }
+protocol Player {
+    func play(fileURL: URL)
+    func pause()
+    func continuePlaying()
+    func stop()
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-final class SimpleFileDownloader: FileDownloader {
+final class FileManagerDownloader: FileDownloader {
     
     func downloadFile(
         fromURL url: URL,
