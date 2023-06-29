@@ -82,9 +82,10 @@ final class TrackListScreenViewModel: ObservableObject {
         fileDownloader.downloadFile(fromURL: url) { [weak self] result in
             switch result {
             case .tempFileURL(let tempFileURL):
-                guard let savedFileURL = self?.fileStorage.saveDownloadedFile(
-                    tempFileURL: tempFileURL,
-                    name: "\(trackId).mp3"
+                guard let savedFileURL = self?.fileStorage.saveFile(
+                    downloadedFileURL: tempFileURL,
+                    fileName: "\(trackId)",
+                    format: TrackFileFormat.mp3.rawValue
                 ) else {
                     return
                 }
@@ -129,6 +130,8 @@ final class TrackListScreenViewModel: ObservableObject {
     
     @MainActor
     func clearCache() {
+        activeTrackId = nil
+        player.stop()
         fileStorage.clear()
         tracksStatuses = [:]
     }
@@ -138,4 +141,8 @@ private enum TrackDownloadingStatus {
     case readyToDownload
     case downloading(progress: Double)
     case fileURL(url: URL)
+}
+
+private enum TrackFileFormat: String {
+    case mp3 = "mp3"
 }

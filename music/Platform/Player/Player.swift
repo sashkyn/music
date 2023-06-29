@@ -18,6 +18,10 @@ final class DevicePlayer {
         player.pause()
     }
     
+    func stop() {
+        player.replaceCurrentItem(with: nil)
+    }
+    
     func continuePlaying() {
         guard player.currentItem != nil else {
             return

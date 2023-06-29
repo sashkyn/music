@@ -10,8 +10,6 @@ protocol FileDownloader {
 
 enum FileDownloaderError: Error {
     case downloadError
-    case movingError
-    case destinationNotExist
     case writeError
 }
 

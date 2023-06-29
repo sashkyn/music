@@ -24,14 +24,18 @@ final class FileStorage {
         return fileURLs
     }
     
-    func saveDownloadedFile(tempFileURL: URL, name: String) -> URL? {
-        guard let fileDestinationURL = mainDirectoryURL?.appendingPathComponent(name) else {
+    func saveFile(
+        downloadedFileURL: URL,
+        fileName: String,
+        format: String
+    ) -> URL? {
+        guard let fileDestinationURL = mainDirectoryURL?.appendingPathComponent("\(fileName).\(format)") else {
             return nil
         }
         
         do {
             try? FileManager.default.removeItem(at: fileDestinationURL)
-            try FileManager.default.moveItem(at: tempFileURL, to: fileDestinationURL)
+            try FileManager.default.moveItem(at: downloadedFileURL, to: fileDestinationURL)
             return fileDestinationURL
         } catch {
             return nil
