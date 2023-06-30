@@ -35,11 +35,6 @@ final class DocumentsFileStorage: FileStorage {
         let savedURLs = getSavedFileURLs()
         return savedURLs.contains { url in fileURL == url }
     }
-}
-
-// MARK: FileStorage + Saved Files
-
-private extension DocumentsFileStorage {
     
     func getSavedFileURLs() -> [URL] {
         guard let mainDirectoryURL else {

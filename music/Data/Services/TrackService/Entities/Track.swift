@@ -1,9 +1,6 @@
 import Foundation
 
-// to file name
-// from file name
-
-struct Track: Decodable {
+struct Track: Hashable, Decodable {
     let id: RemoteId
     let name: String
     let audioURL: String

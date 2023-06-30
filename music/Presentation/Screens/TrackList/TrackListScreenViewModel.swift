@@ -48,14 +48,14 @@ final class TrackListScreenViewModel: ObservableObject {
     private let fileDownloader: FileDownloader
     private let fileStorage: FileStorage
     private let player: DevicePlayer
-    @Published private var trackStore: Store<TrackStoredObject>
+    @Published private var trackStore: PersistantStore<TrackStoredObject>
     
     init(
         service: TrackService,
         fileDownloader: FileDownloader,
         fileStorage: FileStorage,
         player: DevicePlayer,
-        trackStore: Store<TrackStoredObject>
+        trackStore: PersistantStore<TrackStoredObject>
     ) {
         self.service = service
         self.fileDownloader = fileDownloader
@@ -78,18 +78,16 @@ final class TrackListScreenViewModel: ObservableObject {
             isLoading = true
             
             let trackStoredObjects = await trackStore.objects
+            
+            let fileURLs = fileStorage.getSavedFileURLs()
+            print("getTracks all file URLS - \(fileURLs)")
             trackStoredObjects
-                .filter { $0.downloadedFileURL != nil }
-                .forEach {
-                    guard let fileURL = $0.downloadedFileURL else {
+                .forEach { object in
+                    print("getTracks object name - \(object.metaFile.fullName)")
+                    guard let fileURL = fileURLs.first(where: { $0.absoluteString.contains(object.metaFile.fullName) }) else {
                         return
                     }
-                    
-                    guard fileStorage.isExist(fileURL: fileURL) else {
-                        return
-                    }
-                    
-                    tracksDownloadingStatuses[$0.id] = .file(url: fileURL)
+                    tracksDownloadingStatuses[object.id] = .file(url: fileURL)
                 }
             
             self.tracks = trackStoredObjects.map { $0.toTrack() }
@@ -123,7 +121,7 @@ final class TrackListScreenViewModel: ObservableObject {
             switch result {
             case .tempFileURL(let tempFileURL):
                 let savedFileURL = self?.fileStorage.save(
-                    metaFile: .init(name: "\(trackId)", format: .mp3),
+                    metaFile: track.metaFile,
                     fromDownloadedFileURL: tempFileURL
                 )
                 
@@ -133,14 +131,6 @@ final class TrackListScreenViewModel: ObservableObject {
                 
                 DispatchQueue.main.async {
                     self?.tracksDownloadingStatuses[trackId] = .file(url: savedFileURL)
-                }
-                
-                Task {
-                    // Updating Store
-                    let trackStoredObject = TrackStoredObject(fromTrack: track)
-                        .withUpdated(downloadedFileURL: savedFileURL)
-                    
-                    try? await self?.trackStore.update(object: trackStoredObject)
                 }
             case .progress(let progressValue):
                 DispatchQueue.main.async {

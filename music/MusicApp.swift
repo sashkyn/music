@@ -5,7 +5,7 @@ import SwiftUI
 @main
 struct MusicApp: App {
 
-    private var trackStore = Store<TrackStoredObject>(storeFileName: "TrackData")
+    private var trackStore = PersistantStore<TrackStoredObject>(storeFileName: "TrackData")
     
     var body: some Scene {
         WindowGroup {

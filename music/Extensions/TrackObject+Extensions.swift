@@ -8,8 +8,7 @@ extension TrackStoredObject {
         self.init(
             id: track.id,
             name: track.name,
-            audioURL: track.audioURL,
-            downloadedFileURL: nil
+            audioURL: track.audioURL
         )
     }
 }
@@ -34,14 +33,34 @@ extension TrackStoredObject {
     func withUpdated(
         id: RemoteId? = nil,
         name: String? = nil,
-        audioURL: String? = nil,
-        downloadedFileURL: URL? = nil
+        audioURL: String? = nil
     ) -> Self {
         .init(
             id: id ?? self.id,
             name: name ?? self.name,
-            audioURL: audioURL ?? self.audioURL,
-            downloadedFileURL: downloadedFileURL ?? self.downloadedFileURL
+            audioURL: audioURL ?? self.audioURL
+        )
+    }
+}
+
+// MARK: TrackStoredObject + File name for saving
+
+extension TrackStoredObject {
+    
+    var metaFile: MetaFile {
+        .init(
+            name: "\(name.lowercased().replacingOccurrences(of: " ", with: "_"))_\(id)",
+            format: .mp3
+        )
+    }
+}
+
+extension Track {
+    
+    var metaFile: MetaFile {
+        .init(
+            name: "\(name.lowercased().replacingOccurrences(of: " ", with: "_"))_\(id)",
+            format: .mp3
         )
     }
 }

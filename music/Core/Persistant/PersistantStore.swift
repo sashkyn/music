@@ -1,8 +1,6 @@
 import Foundation
 
-// TODO: -> PersistantStore
-
-actor Store<T: StoredObject>: ObservableObject {
+actor PersistantStore<T: StoredObject>: ObservableObject {
     
     @Published
     private(set) var objects: [T] = []
