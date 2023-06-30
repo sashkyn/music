@@ -15,7 +15,7 @@ struct TrackListScreen: View {
             } else {
                 ScrollView {
                     LazyVStack {
-                        ForEach(viewModel.trackViewDataList) { viewData in
+                        ForEach(viewModel.trackViewDataList, id: \.hashValue) { viewData in
                             TrackView(
                                 viewData: viewData,
                                 onAction: {
@@ -27,8 +27,7 @@ struct TrackListScreen: View {
                                     case .play:
                                         viewModel.playTrack(withId: viewData.trackId)
                                     case .progress:
-                                        print("progress")
-                                        //viewModel.cancelDownloadTrack(withId: viewData.trackId)
+                                        return
                                     }
                                 }
                             )

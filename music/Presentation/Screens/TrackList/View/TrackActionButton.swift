@@ -37,7 +37,7 @@ struct TrackActionButton: View {
 
 extension TrackActionButton {
     
-    enum State {
+    enum State: Hashable {
         case play
         case pause
         case download

@@ -32,8 +32,7 @@ struct TrackView: View {
 
 extension TrackView {
     
-    struct ViewData: Identifiable {
-        let id = UUID()
+    struct ViewData: Hashable {
         let trackId: RemoteId
         let title: String
         let buttonState: TrackActionButton.State
