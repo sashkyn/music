@@ -1,7 +1,5 @@
 import SwiftUI
 
-// TODO: show error in alert
-
 struct TrackListScreen: View {
     
     @ObservedObject
@@ -75,7 +73,7 @@ struct TrackListScreen_Previews: PreviewProvider {
     static var previews: some View {
         TrackListScreen(
             viewModel: .init(
-                service: TrackMockService(),
+                service: TrackGitHubService(),
                 fileDownloader: URLSessionFileDownloader(),
                 fileStorage: DocumentsFileStorage(),
                 player: DevicePlayer(),

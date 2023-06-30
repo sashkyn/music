@@ -21,7 +21,6 @@
 		E6B257942A498ECA006BF035 /* TrackGitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257932A498ECA006BF035 /* TrackGitHubService.swift */; };
 		E6B257972A498F7C006BF035 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257962A498F7C006BF035 /* TrackView.swift */; };
 		E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257982A499327006BF035 /* TrackActionButton.swift */; };
-		E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */; };
 		E6B257A12A49E448006BF035 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A02A49E448006BF035 /* TrackList.swift */; };
 		E6B257A42A4AE927006BF035 /* FileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A32A4AE927006BF035 /* FileDownloader.swift */; };
 		E6B257A62A4AEC1B006BF035 /* URLSessionFileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B257A52A4AEC1B006BF035 /* URLSessionFileDownloader.swift */; };
@@ -50,7 +49,6 @@
 		E6B257932A498ECA006BF035 /* TrackGitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackGitHubService.swift; sourceTree = "<group>"; };
 		E6B257962A498F7C006BF035 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		E6B257982A499327006BF035 /* TrackActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackActionButton.swift; sourceTree = "<group>"; };
-		E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMockService.swift; sourceTree = "<group>"; };
 		E6B257A02A49E448006BF035 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
 		E6B257A32A4AE927006BF035 /* FileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloader.swift; sourceTree = "<group>"; };
 		E6B257A52A4AEC1B006BF035 /* URLSessionFileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFileDownloader.swift; sourceTree = "<group>"; };
@@ -170,19 +168,18 @@
 			isa = PBXGroup;
 			children = (
 				E6B257A22A49E453006BF035 /* Entities */,
-				E6B2579A2A49D4EB006BF035 /* Mock */,
-				E6B257922A498EBB006BF035 /* GoogleDisk */,
+				E6B257922A498EBB006BF035 /* GitHub */,
 				E6B2578F2A498E7C006BF035 /* TrackService.swift */,
 			);
 			path = TrackService;
 			sourceTree = "<group>";
 		};
-		E6B257922A498EBB006BF035 /* GoogleDisk */ = {
+		E6B257922A498EBB006BF035 /* GitHub */ = {
 			isa = PBXGroup;
 			children = (
 				E6B257932A498ECA006BF035 /* TrackGitHubService.swift */,
 			);
-			path = GoogleDisk;
+			path = GitHub;
 			sourceTree = "<group>";
 		};
 		E6B257952A498F70006BF035 /* View */ = {
@@ -192,14 +189,6 @@
 				E6B257982A499327006BF035 /* TrackActionButton.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		E6B2579A2A49D4EB006BF035 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				E6B2579B2A49D4F6006BF035 /* TrackMockService.swift */,
-			);
-			path = Mock;
 			sourceTree = "<group>";
 		};
 		E6B2579D2A49E25D006BF035 /* Downloader */ = {
@@ -359,7 +348,6 @@
 				E6B2578E2A498A91006BF035 /* Track.swift in Sources */,
 				E6B6C7762A4EC926000CCA13 /* PersistantStore.swift in Sources */,
 				E6B257992A499327006BF035 /* TrackActionButton.swift in Sources */,
-				E6B2579C2A49D4F6006BF035 /* TrackMockService.swift in Sources */,
 				E64779382A4C926000A9DF1D /* DocumentsFileStorage.swift in Sources */,
 				E647793F2A4DBCC200A9DF1D /* FileStorage.swift in Sources */,
 				E6D508302A4B496000AFA9B5 /* DevicePlayer.swift in Sources */,

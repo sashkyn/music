@@ -30,11 +30,6 @@ final class DocumentsFileStorage: FileStorage {
             try? FileManager.default.removeItem(at: $0)
         }
     }
-
-    func isExist(fileURL: URL) -> Bool {
-        let savedURLs = getSavedFileURLs()
-        return savedURLs.contains { url in fileURL == url }
-    }
     
     func getSavedFileURLs() -> [URL] {
         guard let mainDirectoryURL else {

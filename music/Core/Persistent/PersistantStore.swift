@@ -4,6 +4,7 @@ actor PersistentStore<T: StoredObject>: ObservableObject {
     
     @Published
     private(set) var objects: [T] = []
+    private(set) var isLoaded: Bool = false
     
     private lazy var storeFileURL: URL? = {
         let url = try? FileManager.default.url(
@@ -21,10 +22,13 @@ actor PersistentStore<T: StoredObject>: ObservableObject {
         self.storeFileName = storeFileName
     }
     
-    @discardableResult
-    func load() async throws -> [T] {
+    func loadIfNeeded() async throws {
+        guard !isLoaded else {
+            return
+        }
+        
         guard let storeFileURL else {
-            return []
+            return
         }
         
         let task = Task<[T], Error> {
@@ -37,7 +41,7 @@ actor PersistentStore<T: StoredObject>: ObservableObject {
         
         let objects = try await task.value
         self.objects = objects
-        return objects
+        self.isLoaded = true
     }
     
     func save(objects: [T]) async throws {

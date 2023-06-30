@@ -8,3 +8,15 @@ extension Track {
         URL(string: audioURL)
     }
 }
+
+// MARK: Track + File name for saving
+
+extension Track {
+    
+    var metaFile: MetaFile {
+        .init(
+            name: "\(name.lowercased().replacingOccurrences(of: " ", with: "_"))_\(id)",
+            format: .mp3
+        )
+    }
+}

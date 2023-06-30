@@ -54,13 +54,3 @@ extension TrackStoredObject {
         )
     }
 }
-
-extension Track {
-    
-    var metaFile: MetaFile {
-        .init(
-            name: "\(name.lowercased().replacingOccurrences(of: " ", with: "_"))_\(id)",
-            format: .mp3
-        )
-    }
-}

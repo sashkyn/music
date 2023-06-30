@@ -8,8 +8,7 @@ final class TrackGitHubService: TrackService {
                 let trackList = try JSONDecoder().decode(TrackList.self, from: data)
                 let tracks = trackList.data
                 return .success(tracks)
-            } catch(let error) {
-                print(error)
+            } catch {
                 return .failure(.serverError)
             }
         }

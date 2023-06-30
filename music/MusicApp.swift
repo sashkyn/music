@@ -1,11 +1,7 @@
 import SwiftUI
 
-// TODO: handle errors
-
 @main
 struct MusicApp: App {
-
-    private var trackStore = PersistentStore<TrackStoredObject>(storeFileName: "TrackData")
     
     var body: some Scene {
         WindowGroup {
@@ -15,18 +11,9 @@ struct MusicApp: App {
                     fileDownloader: URLSessionFileDownloader(),
                     fileStorage: DocumentsFileStorage(),
                     player: DevicePlayer(),
-                    trackStore: trackStore
+                    trackStore: PersistentStore<TrackStoredObject>(storeFileName: "TrackData")
                 )
             )
-                .onAppear {
-                    Task {
-                        do {
-                            try await trackStore.load()
-                        } catch {
-                            print("TrackStore loadiing error - \(error.localizedDescription)")
-                        }
-                    }
-                }
         }
     }
 }

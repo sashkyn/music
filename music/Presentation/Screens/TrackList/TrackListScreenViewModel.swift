@@ -1,8 +1,6 @@
 import Foundation
 import AVFoundation
 
-// TODO: pull to refresh
-
 final class TrackListScreenViewModel: ObservableObject {
 
     var trackViewDataList: [TrackView.ViewData] {
@@ -10,13 +8,12 @@ final class TrackListScreenViewModel: ObservableObject {
             TrackView.ViewData(
                 trackId: track.id,
                 title: track.name,
-                buttonState: getButtonState(forTrack: track)
+                buttonState: getActionButtonState(forTrack: track)
             )
         }
     }
     
     @Published var isLoading: Bool = true
-    @Published var error: Error? = nil
 
     @Published private var tracks: [Track] = []
     @Published private var tracksDownloadingStatuses: [RemoteId: TrackDownloadingStatus] = [:]
@@ -56,6 +53,8 @@ final class TrackListScreenViewModel: ObservableObject {
         Task {
             isLoading = true
             
+            try? await trackStore.loadIfNeeded()
+            
             let trackStoredObjects = await trackStore.objects
             
             let fileURLs = fileStorage.getSavedFileURLs()
@@ -85,12 +84,13 @@ final class TrackListScreenViewModel: ObservableObject {
                 let trackStoredObjects = tracks.map { TrackStoredObject(fromTrack: $0) }
                 try? await trackStore.save(objects: trackStoredObjects)
             case .failure(let error):
-                self.error = error
+                print(error.localizedDescription)
             }
             isLoading = false
         }
     }
     
+    @MainActor
     func downloadAudio(forTrackId trackId: RemoteId) {
         guard let track = tracks.first(where: { $0.id == trackId }),
               let url = track.audioDownloadURL else {
@@ -121,7 +121,8 @@ final class TrackListScreenViewModel: ObservableObject {
             }
         }
     }
-
+    
+    @MainActor
     func playTrack(withId trackId: RemoteId) {
         if playingTrackId == trackId {
             player.continuePlaying()
@@ -137,10 +138,12 @@ final class TrackListScreenViewModel: ObservableObject {
         playingTrackId = trackId
     }
 
+    @MainActor
     func pauseTrack() {
         player.pause()
     }
 
+    @MainActor
     func clearCache() {
         tracks = []
         playingTrackId = nil
@@ -154,11 +157,11 @@ final class TrackListScreenViewModel: ObservableObject {
     }
 }
 
-// MARK: TrackListScreenViewModel + Getting TrackActionButton.State for Track
+// MARK: TrackListScreenViewModel + Getting TrackActionButton.State for TrackView
 
 private extension TrackListScreenViewModel {
     
-    func getButtonState(forTrack track: Track) -> TrackActionButton.State {
+    func getActionButtonState(forTrack track: Track) -> TrackActionButton.State {
         if playingTrackId == track.id {
             if isPlaying {
                 return .pause

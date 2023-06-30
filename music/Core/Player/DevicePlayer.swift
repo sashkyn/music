@@ -1,8 +1,5 @@
 import AVFoundation
 
-/// TODO:
-/// состояние воспроизведения
-
 final class DevicePlayer: Player {
     
     var onStartPlaying: (() -> Void)?
