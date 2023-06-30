@@ -80,7 +80,7 @@ struct TrackListScreen_Previews: PreviewProvider {
                 fileDownloader: URLSessionFileDownloader(),
                 fileStorage: DocumentsFileStorage(),
                 player: DevicePlayer(),
-                trackStore: PersistantStore(storeFileName: "hehehe")
+                trackStore: PersistentStore(storeFileName: "mock")
             )
         )
     }

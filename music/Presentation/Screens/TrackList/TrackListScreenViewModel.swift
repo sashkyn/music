@@ -48,14 +48,14 @@ final class TrackListScreenViewModel: ObservableObject {
     private let fileDownloader: FileDownloader
     private let fileStorage: FileStorage
     private let player: DevicePlayer
-    @Published private var trackStore: PersistantStore<TrackStoredObject>
+    @Published private var trackStore: PersistentStore<TrackStoredObject>
     
     init(
         service: TrackService,
         fileDownloader: FileDownloader,
         fileStorage: FileStorage,
         player: DevicePlayer,
-        trackStore: PersistantStore<TrackStoredObject>
+        trackStore: PersistentStore<TrackStoredObject>
     ) {
         self.service = service
         self.fileDownloader = fileDownloader
@@ -80,14 +80,16 @@ final class TrackListScreenViewModel: ObservableObject {
             let trackStoredObjects = await trackStore.objects
             
             let fileURLs = fileStorage.getSavedFileURLs()
-            print("getTracks all file URLS - \(fileURLs)")
             trackStoredObjects
-                .forEach { object in
-                    print("getTracks object name - \(object.metaFile.fullName)")
-                    guard let fileURL = fileURLs.first(where: { $0.absoluteString.contains(object.metaFile.fullName) }) else {
-                        return
+                .compactMap { object in
+                    let fileURL = fileURLs.first(where: { $0.absoluteString.contains(object.metaFile.fullName) })
+                    guard let fileURL else {
+                        return nil
                     }
-                    tracksDownloadingStatuses[object.id] = .file(url: fileURL)
+                    return (object.id, fileURL)
+                }
+                .forEach { (trackId, savedFileURL) in
+                    tracksDownloadingStatuses[trackId] = .file(url: savedFileURL)
                 }
             
             self.tracks = trackStoredObjects.map { $0.toTrack() }
@@ -101,7 +103,7 @@ final class TrackListScreenViewModel: ObservableObject {
             case .success(let tracks):
                 self.tracks = tracks
 
-                let trackStoredObjects = tracks.map { TrackStoredObject.init(fromTrack: $0) }
+                let trackStoredObjects = tracks.map { TrackStoredObject(fromTrack: $0) }
                 try? await trackStore.save(objects: trackStoredObjects)
             case .failure(let error):
                 self.error = error
@@ -109,8 +111,7 @@ final class TrackListScreenViewModel: ObservableObject {
             isLoading = false
         }
     }
-
-    @MainActor
+    
     func downloadTrack(withId trackId: RemoteId) {
         guard let track = tracks.first(where: { $0.id == trackId }),
               let url = track.audioDownloadURL else {
@@ -141,8 +142,7 @@ final class TrackListScreenViewModel: ObservableObject {
             }
         }
     }
-    
-    @MainActor
+
     func playTrack(withId trackId: RemoteId) {
         if playingTrackId == trackId {
             player.continuePlaying()
@@ -157,13 +157,11 @@ final class TrackListScreenViewModel: ObservableObject {
         
         playingTrackId = trackId
     }
-    
-    @MainActor
+
     func pauseTrack() {
         player.pause()
     }
-    
-    @MainActor
+
     func clearCache() {
         Task {
             tracks = []

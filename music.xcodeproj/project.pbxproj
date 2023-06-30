@@ -142,7 +142,7 @@
 		E6B257882A498A48006BF035 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				E6B6C7702A4EC844000CCA13 /* Store */,
+				E6B6C7702A4EC844000CCA13 /* Persistant */,
 				E6B6C76F2A4EC83E000CCA13 /* Services */,
 			);
 			path = Data;
@@ -229,12 +229,12 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		E6B6C7702A4EC844000CCA13 /* Store */ = {
+		E6B6C7702A4EC844000CCA13 /* Persistant */ = {
 			isa = PBXGroup;
 			children = (
 				E6B6C7732A4EC910000CCA13 /* Objects */,
 			);
-			path = Store;
+			path = Persistant;
 			sourceTree = "<group>";
 		};
 		E6B6C7732A4EC910000CCA13 /* Objects */ = {
@@ -251,18 +251,18 @@
 				E64779362A4C922600A9DF1D /* FileStorage */,
 				E6D5082E2A4B495100AFA9B5 /* Player */,
 				E6B2579D2A49E25D006BF035 /* Downloader */,
-				E6B6C77D2A4ED56D000CCA13 /* Persistant */,
+				E6B6C77D2A4ED56D000CCA13 /* Persistent */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		E6B6C77D2A4ED56D000CCA13 /* Persistant */ = {
+		E6B6C77D2A4ED56D000CCA13 /* Persistent */ = {
 			isa = PBXGroup;
 			children = (
 				E6B6C7752A4EC926000CCA13 /* PersistantStore.swift */,
 				E6B6C77B2A4ED264000CCA13 /* StoredObject.swift */,
 			);
-			path = Persistant;
+			path = Persistent;
 			sourceTree = "<group>";
 		};
 		E6B6C7812A4EDD2B000CCA13 /* Models */ = {
