@@ -191,13 +191,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		E6B2579D2A49E25D006BF035 /* Downloader */ = {
+		E6B2579D2A49E25D006BF035 /* FileDownloader */ = {
 			isa = PBXGroup;
 			children = (
 				E6B257A32A4AE927006BF035 /* FileDownloader.swift */,
 				E6B257A52A4AEC1B006BF035 /* URLSessionFileDownloader.swift */,
 			);
-			path = Downloader;
+			path = FileDownloader;
 			sourceTree = "<group>";
 		};
 		E6B257A22A49E453006BF035 /* Entities */ = {
@@ -238,9 +238,9 @@
 			isa = PBXGroup;
 			children = (
 				E64779362A4C922600A9DF1D /* FileStorage */,
-				E6D5082E2A4B495100AFA9B5 /* Player */,
-				E6B2579D2A49E25D006BF035 /* Downloader */,
+				E6B2579D2A49E25D006BF035 /* FileDownloader */,
 				E6B6C77D2A4ED56D000CCA13 /* Persistent */,
+				E6D5082E2A4B495100AFA9B5 /* Player */,
 			);
 			path = Core;
 			sourceTree = "<group>";
