@@ -26,23 +26,6 @@ extension TrackStoredObject {
     }
 }
 
-// MARK: TrackStoredObject + Pretty mutating
-
-extension TrackStoredObject {
-    
-    func withUpdated(
-        id: RemoteId? = nil,
-        name: String? = nil,
-        audioURL: String? = nil
-    ) -> Self {
-        .init(
-            id: id ?? self.id,
-            name: name ?? self.name,
-            audioURL: audioURL ?? self.audioURL
-        )
-    }
-}
-
 // MARK: TrackStoredObject + File name for saving
 
 extension TrackStoredObject {
