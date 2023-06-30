@@ -11,7 +11,7 @@ struct TrackListScreen: View {
         NavigationView {
             if viewModel.isLoading {
                 ProgressView()
-                    .onAppear { viewModel.getTracks() }
+                    .onAppear { viewModel.loadTracks() }
             } else {
                 ScrollView {
                     LazyVStack {
@@ -21,7 +21,7 @@ struct TrackListScreen: View {
                                 onAction: {
                                     switch viewData.buttonState {
                                     case .download:
-                                        viewModel.downloadTrack(withId: viewData.trackId)
+                                        viewModel.downloadAudio(forTrackId: viewData.trackId)
                                     case .pause:
                                         viewModel.pauseTrack()
                                     case .play:
@@ -49,7 +49,7 @@ struct TrackListScreen: View {
                 .navigationBarItems(
                     leading: Button(
                         action: {
-                            viewModel.getTracks()
+                            viewModel.loadTracks()
                         },
                         label: {
                             Text("Update")

@@ -7,31 +7,10 @@ final class TrackListScreenViewModel: ObservableObject {
 
     var trackViewDataList: [TrackView.ViewData] {
         tracks.map { track in
-            let buttonState: TrackActionButton.State = {
-                if playingTrackId == track.id {
-                    if isPlaying {
-                        return .pause
-                    } else {
-                        return .play
-                    }
-                }
-                
-                switch tracksDownloadingStatuses[track.id] {
-                case .readyToDownload:
-                    return .download
-                case .downloading(let value):
-                    return .progress(value: value)
-                case .file:
-                    return .play
-                default:
-                    return .download
-                }
-            }()
-            
-            return .init(
+            TrackView.ViewData(
                 trackId: track.id,
                 title: track.name,
-                buttonState: buttonState
+                buttonState: getButtonState(forTrack: track)
             )
         }
     }
@@ -48,7 +27,7 @@ final class TrackListScreenViewModel: ObservableObject {
     private let fileDownloader: FileDownloader
     private let fileStorage: FileStorage
     private let player: DevicePlayer
-    @Published private var trackStore: PersistentStore<TrackStoredObject>
+    private let trackStore: PersistentStore<TrackStoredObject>
     
     init(
         service: TrackService,
@@ -73,7 +52,7 @@ final class TrackListScreenViewModel: ObservableObject {
     }
     
     @MainActor
-    func getTracks() {
+    func loadTracks() {
         Task {
             isLoading = true
             
@@ -112,7 +91,7 @@ final class TrackListScreenViewModel: ObservableObject {
         }
     }
     
-    func downloadTrack(withId trackId: RemoteId) {
+    func downloadAudio(forTrackId trackId: RemoteId) {
         guard let track = tracks.first(where: { $0.id == trackId }),
               let url = track.audioDownloadURL else {
             return
@@ -163,13 +142,40 @@ final class TrackListScreenViewModel: ObservableObject {
     }
 
     func clearCache() {
+        tracks = []
+        playingTrackId = nil
+        player.stop()
+        fileStorage.removeAllFiles()
+        tracksDownloadingStatuses = [:]
+        
         Task {
-            tracks = []
-            playingTrackId = nil
-            player.stop()
-            fileStorage.removeAllFiles()
-            tracksDownloadingStatuses = [:]
             try await trackStore.removeAllObjects()
+        }
+    }
+}
+
+// MARK: TrackListScreenViewModel + Getting TrackActionButton.State for Track
+
+private extension TrackListScreenViewModel {
+    
+    func getButtonState(forTrack track: Track) -> TrackActionButton.State {
+        if playingTrackId == track.id {
+            if isPlaying {
+                return .pause
+            } else {
+                return .play
+            }
+        }
+        
+        switch tracksDownloadingStatuses[track.id] {
+        case .readyToDownload:
+            return .download
+        case .downloading(let value):
+            return .progress(value: value)
+        case .file:
+            return .play
+        default:
+            return .download
         }
     }
 }

@@ -1,3 +1,3 @@
 import Foundation
 
-protocol StoredObject: Identifiable, Codable, Hashable { }
+protocol StoredObject: Identifiable, Codable, Equatable { }
