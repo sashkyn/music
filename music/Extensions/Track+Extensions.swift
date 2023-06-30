@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: Track + safe URL for download
+// MARK: Track + Safety URL for download
 
 extension Track {
 

@@ -1,12 +1,14 @@
 import Foundation
 import AVFoundation
 
+// TODO: pull to refresh
+
 final class TrackListScreenViewModel: ObservableObject {
 
     var trackViewDataList: [TrackView.ViewData] {
         tracks.map { track in
             let buttonState: TrackActionButton.State = {
-                if activeTrackId == track.id {
+                if playingTrackId == track.id {
                     if isPlaying {
                         return .pause
                     } else {
@@ -14,12 +16,12 @@ final class TrackListScreenViewModel: ObservableObject {
                     }
                 }
                 
-                switch tracksStatuses[track.id] {
+                switch tracksDownloadingStatuses[track.id] {
                 case .readyToDownload:
                     return .download
                 case .downloading(let value):
                     return .progress(value: value)
-                case .fileURL:
+                case .file:
                     return .play
                 default:
                     return .download
@@ -38,25 +40,28 @@ final class TrackListScreenViewModel: ObservableObject {
     @Published var error: Error? = nil
 
     @Published private var tracks: [Track] = []
-    @Published private var tracksStatuses: [RemoteId: TrackDownloadingStatus] = [:]
-    @Published private var activeTrackId: RemoteId? = nil
+    @Published private var tracksDownloadingStatuses: [RemoteId: TrackDownloadingStatus] = [:]
+    @Published private var playingTrackId: RemoteId? = nil
     @Published private var isPlaying: Bool = false
     
     private let service: TrackService
     private let fileDownloader: FileDownloader
     private let fileStorage: FileStorage
     private let player: DevicePlayer
+    @Published private var trackStore: Store<TrackStoredObject>
     
     init(
         service: TrackService,
         fileDownloader: FileDownloader,
         fileStorage: FileStorage,
-        player: DevicePlayer
+        player: DevicePlayer,
+        trackStore: Store<TrackStoredObject>
     ) {
         self.service = service
         self.fileDownloader = fileDownloader
         self.fileStorage = fileStorage
         self.player = player
+        self.trackStore = trackStore
         
         self.player.onStartPlaying = { [weak self] in
             self?.isPlaying = true
@@ -72,41 +77,74 @@ final class TrackListScreenViewModel: ObservableObject {
         Task {
             isLoading = true
             
+            let trackStoredObjects = await trackStore.objects
+            trackStoredObjects
+                .filter { $0.downloadedFileURL != nil }
+                .forEach {
+                    guard let fileURL = $0.downloadedFileURL else {
+                        return
+                    }
+                    
+                    guard fileStorage.isExist(fileURL: fileURL) else {
+                        return
+                    }
+                    
+                    tracksDownloadingStatuses[$0.id] = .file(url: fileURL)
+                }
+            
+            self.tracks = trackStoredObjects.map { $0.toTrack() }
+            
+            if !self.tracks.isEmpty {
+                isLoading = false
+            }
+            
             let result = await service.getTracks()
             switch result {
             case .success(let tracks):
                 self.tracks = tracks
+
+                let trackStoredObjects = tracks.map { TrackStoredObject.init(fromTrack: $0) }
+                try? await trackStore.save(objects: trackStoredObjects)
             case .failure(let error):
                 self.error = error
             }
-            
             isLoading = false
         }
     }
 
     @MainActor
     func downloadTrack(withId trackId: RemoteId) {
-        guard let url = tracks.first(where: { $0.id == trackId })?.audioDownloadURL else {
+        guard let track = tracks.first(where: { $0.id == trackId }),
+              let url = track.audioDownloadURL else {
             return
         }
         
         fileDownloader.downloadFile(fromURL: url) { [weak self] result in
             switch result {
             case .tempFileURL(let tempFileURL):
-                guard let savedFileURL = self?.fileStorage.saveFile(
-                    downloadedFileURL: tempFileURL,
-                    fileName: "\(trackId)",
-                    format: TrackFileFormat.mp3.rawValue
-                ) else {
+                let savedFileURL = self?.fileStorage.save(
+                    metaFile: .init(name: "\(trackId)", format: .mp3),
+                    fromDownloadedFileURL: tempFileURL
+                )
+                
+                guard let savedFileURL else {
                     return
                 }
                 
                 DispatchQueue.main.async {
-                    self?.tracksStatuses[trackId] = .fileURL(url: savedFileURL)
+                    self?.tracksDownloadingStatuses[trackId] = .file(url: savedFileURL)
+                }
+                
+                Task {
+                    // Updating Store
+                    let trackStoredObject = TrackStoredObject(fromTrack: track)
+                        .withUpdated(downloadedFileURL: savedFileURL)
+                    
+                    try? await self?.trackStore.update(object: trackStoredObject)
                 }
             case .progress(let progressValue):
                 DispatchQueue.main.async {
-                    self?.tracksStatuses[trackId] = .downloading(progress: progressValue)
+                    self?.tracksDownloadingStatuses[trackId] = .downloading(progress: progressValue)
                 }
             case .error(let error):
                 print(error)
@@ -116,18 +154,18 @@ final class TrackListScreenViewModel: ObservableObject {
     
     @MainActor
     func playTrack(withId trackId: RemoteId) {
-        if activeTrackId == trackId {
+        if playingTrackId == trackId {
             player.continuePlaying()
             return
         }
         
-        guard case let .fileURL(url) = tracksStatuses[trackId] else {
+        guard case let .file(url) = tracksDownloadingStatuses[trackId] else {
             return
         }
         
         player.play(fileURL: url)
         
-        activeTrackId = trackId
+        playingTrackId = trackId
     }
     
     @MainActor
@@ -137,19 +175,19 @@ final class TrackListScreenViewModel: ObservableObject {
     
     @MainActor
     func clearCache() {
-        activeTrackId = nil
-        player.stop()
-        fileStorage.removeAllFiles()
-        tracksStatuses = [:]
+        Task {
+            tracks = []
+            playingTrackId = nil
+            player.stop()
+            fileStorage.removeAllFiles()
+            tracksDownloadingStatuses = [:]
+            try await trackStore.removeAllObjects()
+        }
     }
 }
 
 private enum TrackDownloadingStatus {
     case readyToDownload
     case downloading(progress: Double)
-    case fileURL(url: URL)
-}
-
-private enum TrackFileFormat: String {
-    case mp3 = "mp3"
+    case file(url: URL)
 }

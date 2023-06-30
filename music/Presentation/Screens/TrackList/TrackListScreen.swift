@@ -4,15 +4,15 @@ import SwiftUI
 
 struct TrackListScreen: View {
     
-    @StateObject
+    @ObservedObject
     var viewModel: TrackListScreenViewModel
     
     var body: some View {
-        if viewModel.isLoading {
-            ProgressView()
-                .onAppear { viewModel.getTracks() }
-        } else {
-            NavigationView {
+        NavigationView {
+            if viewModel.isLoading {
+                ProgressView()
+                    .onAppear { viewModel.getTracks() }
+            } else {
                 ScrollView {
                     LazyVStack {
                         ForEach(viewModel.trackViewDataList) { viewData in
@@ -32,9 +32,9 @@ struct TrackListScreen: View {
                                     }
                                 }
                             )
-                                .cornerRadius(16.0)
-                                .padding(.vertical, 4.0)
-                                .padding(.horizontal, 16.0)
+                            .cornerRadius(16.0)
+                            .padding(.vertical, 4.0)
+                            .padding(.horizontal, 16.0)
                         }
                     }
                 }
@@ -47,6 +47,14 @@ struct TrackListScreen: View {
                         }
                     })
                 .navigationBarItems(
+                    leading: Button(
+                        action: {
+                            viewModel.getTracks()
+                        },
+                        label: {
+                            Text("Update")
+                        }
+                    ),
                     trailing: Button(
                         action: {
                             viewModel.clearCache()
@@ -71,7 +79,8 @@ struct TrackListScreen_Previews: PreviewProvider {
                 service: TrackMockService(),
                 fileDownloader: URLSessionFileDownloader(),
                 fileStorage: DocumentsFileStorage(),
-                player: DevicePlayer()
+                player: DevicePlayer(),
+                trackStore: Store(storeFileName: "hehehe")
             )
         )
     }

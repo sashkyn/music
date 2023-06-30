@@ -17,6 +17,7 @@ final class DevicePlayer: Player {
             guard let self else {
                 return
             }
+            
             if self.player.rate == 0.0 {
                 self.onEndPlaying?()
             } else if self.player.rate == 1.0 {

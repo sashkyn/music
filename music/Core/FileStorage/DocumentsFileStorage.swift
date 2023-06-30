@@ -10,18 +10,14 @@ final class DocumentsFileStorage: FileStorage {
         return domainURLs.first
     }()
     
-    func saveFile(
-        downloadedFileURL: URL,
-        fileName: String,
-        format: String
-    ) -> URL? {
-        guard let fileDestinationURL = mainDirectoryURL?.appendingPathComponent("\(fileName).\(format)") else {
+    func save(metaFile: MetaFile, fromDownloadedFileURL: URL) -> URL? {
+        guard let fileDestinationURL = mainDirectoryURL?.appendingPathComponent(metaFile.fullName) else {
             return nil
         }
         
         do {
             try? FileManager.default.removeItem(at: fileDestinationURL)
-            try FileManager.default.moveItem(at: downloadedFileURL, to: fileDestinationURL)
+            try FileManager.default.moveItem(at: fromDownloadedFileURL, to: fileDestinationURL)
             return fileDestinationURL
         } catch {
             return nil
@@ -33,6 +29,11 @@ final class DocumentsFileStorage: FileStorage {
         fileURLs.forEach {
             try? FileManager.default.removeItem(at: $0)
         }
+    }
+
+    func isExist(fileURL: URL) -> Bool {
+        let savedURLs = getSavedFileURLs()
+        return savedURLs.contains { url in fileURL == url }
     }
 }
 

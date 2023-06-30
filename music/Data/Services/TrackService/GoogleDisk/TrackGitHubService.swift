@@ -1,6 +1,6 @@
 import Foundation
 
-final class TrackGoogleDiskService: TrackService {
+final class TrackGitHubService: TrackService {
     
     func getTracks() async -> Result<[Track], TrackServiceError> {
             do {
